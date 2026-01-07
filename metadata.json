@@ -1,0 +1,7 @@
+{
+  "name": "Infinite Sticky Note",
+  "description": "A voice-driven task assistant that helps you manage your daily steps hands-free.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

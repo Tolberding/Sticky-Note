@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Sticky Note</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "sticky-yellow": "#FEF9C7",
+                        "sticky-dark": "#e8e3b0",
+                        "ink": "#2c2a1e",
+                        "ink-faded": "rgba(44, 42, 30, 0.4)",
+                        "ink-red": "#d93025",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "hand": ["Patrick Hand", "cursive"],
+                        "kalam": ["Kalam", "cursive"],
+                    },
+                    borderRadius: {
+                        "xl": "3rem",
+                    },
+                    animation: {
+                        "scribble": "scribble 1s ease-out forwards",
+                        "breathe": "breathe-ink 2s ease-in-out infinite",
+                        "float": "float 6s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        scribble: {
+                            "0%": { strokeDashoffset: "200" },
+                            "100%": { strokeDashoffset: "0" }
+                        },
+                        "breathe-ink": {
+                            "0%, 100%": { transform: "scale(1)", filter: "drop-shadow(0 0 1px rgba(217, 48, 37, 0.3))" },
+                            "50%": { transform: "scale(1.1)", filter: "drop-shadow(0 0 5px rgba(217, 48, 37, 0.5))" }
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+                            "50%": { transform: "translateY(-5px) rotate(1deg)" }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: 100dvh;
+            background-color: #FEF9C7;
+            font-family: 'Patrick Hand', cursive;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scribble-path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+        }
+        .marker-placeholder::placeholder {
+            color: rgba(44, 42, 30, 0.3);
+            font-weight: 400;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+</head>
+<body class="text-ink h-screen w-full overflow-hidden relative select-none flex flex-col">
+    <div id="root" class="h-full w-full flex flex-col"></div>
+</body>
+</html>
